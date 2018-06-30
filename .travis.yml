@@ -1,0 +1,16 @@
+language: c
+
+sudo: required
+
+install:
+  - wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
+  - sudo dpkg -i devkitpro-pacman.deb
+  - sudo dkp-pacman --noconfirm -Sy
+  - sudo dkp-pacman --noconfirm -S switch-dev
+  - sudo dkp-pacman --noconfirm -S devkitARM
+
+script:
+  - cd fusee
+  - export DEVKITPRO=/opt/devkitpro
+  - export DEVKITARM=/opt/devkitpro/devkitARM
+  - make
